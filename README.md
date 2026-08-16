@@ -5,7 +5,7 @@ Telegram bot that answers questions from an Obsidian vault. The model uses two t
 ## Architecture
 
 1. Markdown files are split into chunks by headings.
-2. Chunks are embedded locally with `intfloat/multilingual-e5-small` (CPU) and stored in SQLite.
+2. Chunks are embedded locally with `paraphrase-multilingual-MiniLM-L12-v2` (CPU) and stored in SQLite.
 3. Incoming chat messages run a short tool loop: semantic search, optional full-note read, then the final answer.
 4. Generation goes through any OpenAI-compatible API (DeepSeek by default). Embeddings stay on the host.
 

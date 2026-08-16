@@ -51,11 +51,17 @@ class KnowledgeAgent:
     def __init__(self, settings: Settings, store: VectorStore) -> None:
         self.settings = settings
         self.store = store
-        self.embedder = get_embedder(settings.embed_model)
+        self._embedder = None
         self.client = OpenAI(
             api_key=settings.llm_api_key,
             base_url=settings.llm_base_url,
         )
+
+    @property
+    def embedder(self):
+        if self._embedder is None:
+            self._embedder = get_embedder(self.settings.embed_model)
+        return self._embedder
 
     def reindex(self) -> int:
         chunks = load_chunks(self.settings.vault_path)

@@ -44,7 +44,10 @@ class Settings:
             llm_api_key=llm_key,
             llm_base_url=os.getenv("LLM_BASE_URL", "https://api.deepseek.com").rstrip("/"),
             llm_model=os.getenv("LLM_MODEL", "deepseek-chat"),
-            embed_model=os.getenv("EMBED_MODEL", "intfloat/multilingual-e5-small"),
+            embed_model=os.getenv(
+                "EMBED_MODEL",
+                "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+            ),
             allowed_user_ids=_ids(os.getenv("TELEGRAM_ALLOWED_USER_IDS", "")),
             vault_path=Path(os.getenv("VAULT_PATH", "./vault")),
             index_path=Path(os.getenv("INDEX_PATH", "./data/index/vault.sqlite")),
