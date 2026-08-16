@@ -1,6 +1,7 @@
 services:
   bot:
     build: .
+    container_name: obsidian-tg-rag-bot
     restart: unless-stopped
     env_file: .env
     mem_limit: 1536m

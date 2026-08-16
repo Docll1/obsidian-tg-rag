@@ -48,6 +48,15 @@ Docker:
 docker compose up -d --build
 ```
 
+After changing `.env` (model, API key, allowed user id) **do not rebuild**. Recreate the container so it rereads env:
+
+```bash
+docker rm -f obsidian-tg-rag-bot
+docker compose up -d
+```
+
+`--build` is only needed when `src/` or `requirements.txt` change. On this VPS the old `docker-compose` 1.29 binary breaks recreate (`KeyError: ContainerConfig`); use `docker compose` (plugin v2).
+
 Create a bot with [@BotFather](https://t.me/BotFather). After `/start`, put your numeric user id into `TELEGRAM_ALLOWED_USER_IDS` and recreate the container. New notes go into `vault/`; then send `/reindex`.
 
 To use Groq instead of DeepSeek:
