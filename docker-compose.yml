@@ -1,0 +1,13 @@
+services:
+  bot:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    mem_limit: 1g
+    volumes:
+      - ./vault:/vault:ro
+      - ./data/index:/index
+      - ./data/models:/root/.cache/fastembed
+    environment:
+      VAULT_PATH: /vault
+      INDEX_PATH: /index/vault.sqlite
